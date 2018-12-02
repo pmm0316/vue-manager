@@ -1,0 +1,53 @@
+{
+  "success": true,
+  "data": {
+    "menuList": [
+      {
+        "title": "首页",
+        "key": "dashboard",
+        "url": "/dashboard",
+        "order": "1"
+      },
+      {
+        "title": "Element-UI",
+        "key": "elementUI",
+        "url": "/elementUI",
+        "order": "2",
+        "children": [
+          {
+            "title": "Button",
+            "key": "button",
+            "url": "/elementUI/button",
+            "order": "2-1"
+          },
+          {
+            "title": "Icon",
+            "key": "icon",
+            "url": "/elementUI/icon",
+            "order": "2-2"
+          }
+        ]
+      },
+      {
+        "title": "Drag",
+        "key": "drag",
+        "url": "/drag",
+        "order": "3",
+        "children": [
+          {
+            "title": "dnd",
+            "key": "dnd",
+            "url": "/drag/dnd",
+            "order": "3-1"
+          },
+          {
+            "title": "vddl",
+            "key": "vddl",
+            "url": "/drag/vddl",
+            "order": "3-2"
+          }
+        ]
+      }
+    ]
+  }
+}
