@@ -33,13 +33,15 @@ export default {
   .el-container {
     .el-aside {
       background-color: $theme-color;
-      min-width: 180px;
-      width: 16%;
+      width: 14%;
       height: calc(100vh);
     }
     .el-container {
       .el-header {
         padding: 0;
+      }
+      .el-main {
+        padding: 0 10px;
       }
     }
   }

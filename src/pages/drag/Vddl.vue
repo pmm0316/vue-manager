@@ -1,118 +1,3 @@
-<!--
-<template>
-    <div class='container'>
-      <div v-for='(list, listName) in lists' class='box-card' :key='listName'>
-        <div class='panel'>
-          <div class='header'>
-            <h3>List {{listName}}</h3>
-          </div>
-          <div class='body'>
-            <vddl-list
-              :drop='handleDrop'
-              class='body-list'
-              :list='list'
-              :horizontal='false'>
-              <vddl-draggable
-                class='body-item' v-for='(item, index) in list'
-                :key='item.id'
-                :draggable='item'
-                :index='index'
-                :wrapper='list'
-                effect-allowed='move'>
-                {{item.label}}
-              </vddl-draggable>
-              &lt;!&ndash;<vddl-placeholder class='red'>Custom placeholder</vddl-placeholder>&ndash;&gt;
-            </vddl-list>
-          </div>
-        </div>
-      </div>
-    </div>
-</template>
-
-<script>
-export default {
-  name: 'Vddl',
-  data () {
-    return {
-      lists: {
-        A: [
-          {
-            'id': 1,
-            'label': 'Item A1'
-          },
-          {
-            'id': 2,
-            'label': 'Item A2'
-          },
-          {
-            'id': 3,
-            'label': 'Item A3'
-          },
-          {
-            'id': 4,
-            'label': 'Item A4'
-          }
-        ],
-        B: []
-      }
-    }
-  },
-  methods: {
-    // handleDrop (v) {
-    //   console.log(v)
-    // }
-  }
-}
-</script>
-
-<style scoped lang='scss'>
-  .vddl-list, .vddl-draggable {
-    position: relative;
-  }
-  .vddl-list {
-    min-height: 44px;
-  }
-  .vddl-dragging{
-    opacity: 0.7;
-  }
-
-  .vddl-dragging-source {
-    display: none;
-  }
-  .container {
-    display: flex;
-    .box-card {
-      width: 25%;
-      margin-right: 20px;
-      .panel {
-        border-radius: 5px;
-        border: 1px solid #ddd;
-        overflow: hidden;
-        min-height: 200px;
-        .header {
-          background-color: #eee;
-          line-height: 30px;
-          height: 30px;
-          font-size: 18px;
-          font-weight: bold;
-          h3 {
-            margin-left: 5px;
-          }
-        }
-        .body {
-          .body-item {
-            height: 28px;
-            border-bottom: 1px solid #eee;
-            font-size: 14px;
-            line-height: 28px;
-            padding-left: 5px;
-          }
-        }
-      }
-    }
-  }
-</style>
--->
 <template>
   <div class='container'>
     <div
@@ -143,7 +28,7 @@ export default {
                             v-bind:class="{'selected': selected === item}">
               {{item.label}}
             </vddl-draggable>
-            <vddl-placeholder class='red'>&nbsp;&nbsp;&nbsp;&nbsp;</vddl-placeholder>
+            <vddl-placeholder>&nbsp;&nbsp;&nbsp;&nbsp;</vddl-placeholder>
           </vddl-list>
         </div>
       </div>
@@ -155,9 +40,9 @@ export default {
 export default {
   data () {
     return {
-      'selected': null,
-      'lists': {
-        'A': [
+      selected: null,
+      lists: {
+        A: [
           {
             'id': 1,
             'label': 'Item A1'
@@ -179,7 +64,7 @@ export default {
             'label': 'Item A5'
           }
         ],
-        'B': [
+        B: [
           {
             'id': 6,
             'label': 'Item B1'
@@ -201,7 +86,7 @@ export default {
             'label': 'Item B5'
           }
         ],
-        'C': [
+        C: [
           {
             'id': 11,
             'label': 'Item C1'

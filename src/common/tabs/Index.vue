@@ -56,8 +56,10 @@ export default {
      * @param targetOrder
      */
     handleTabsRemove (targetOrder) {
-      console.log('handleTabsRemove', targetOrder)
       let tabs = this.closableTabs
+      if (tabs.length === 1) {
+        return
+      }
       let activeName = this.closableTabsValue
       if (activeName === targetOrder) {
         tabs.forEach((tab, index) => {

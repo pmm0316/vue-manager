@@ -5,6 +5,8 @@ import Button from '../pages/element-ui/Button'
 import Icon from '../pages/element-ui/Icon'
 import Dnd from '../pages/drag/Dnd'
 import Vddl from '../pages/drag/Vddl'
+import ChartBasic from '../pages/echarts/Basic'
+import VddlSimpleChart from '../pages/drag/vddlSimpleChart'
 
 Vue.use(Router)
 
@@ -35,6 +37,16 @@ export default new Router({
       path: '/drag/vddl',
       name: 'Vddl',
       component: Vddl
+    },
+    {
+      path: '/eCharts/basic',
+      name: 'ChartBasic',
+      component: ChartBasic
+    },
+    {
+      path: '/drag/vddlSimpleChart',
+      name: 'VddlSimpleChart',
+      component: VddlSimpleChart
     }
   ]
 })

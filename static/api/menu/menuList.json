@@ -3,7 +3,7 @@
   "data": {
     "menuList": [
       {
-        "title": "首页",
+        "title": "Dashboard",
         "key": "dashboard",
         "url": "/dashboard",
         "order": "1"
@@ -45,6 +45,26 @@
             "key": "vddl",
             "url": "/drag/vddl",
             "order": "3-2"
+          },
+          {
+            "title": "vddlSimpleChart",
+            "key": "vddlSimpleChart",
+            "url": "/drag/vddlSimpleChart",
+            "order": "3-3"
+          }
+        ]
+      },
+      {
+        "title": "ECharts",
+        "key": "eCharts",
+        "url": "/eCharts",
+        "order": "4",
+        "children": [
+          {
+            "title": "基本",
+            "key": "basic",
+            "url": "/eCharts/basic",
+            "order": "4-1"
           }
         ]
       }
