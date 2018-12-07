@@ -20,10 +20,15 @@ export default {
       myChart: null,
       option: {
         title: {
-          text: 'ECharts 入门示例'
+          text: 'ECharts 入门示例',
+          x: 'center',
+          textStyle: {
+            color: '#123456'
+          }
         },
         tooltip: {},
         legend: {
+          x: 'right',
           data: ['销量']
         },
         xAxis: {

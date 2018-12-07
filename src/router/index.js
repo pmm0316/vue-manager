@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Dashboard from '../pages/dashboard'
 import Button from '../pages/element-ui/Button'
 import Icon from '../pages/element-ui/Icon'
+import ColorPicker from '../pages/element-ui/ColorPicker'
 import Dnd from '../pages/drag/Dnd'
 import Vddl from '../pages/drag/Vddl'
 import ChartBasic from '../pages/echarts/Basic'
@@ -27,6 +28,11 @@ export default new Router({
       path: '/elementUI/icon',
       name: 'Icon',
       component: Icon
+    },
+    {
+      path: '/elementUI/colorPicker',
+      name: 'ColorPicker',
+      component: ColorPicker
     },
     {
       path: '/drag/dnd',

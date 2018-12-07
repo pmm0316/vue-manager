@@ -25,6 +25,12 @@
             "key": "icon",
             "url": "/elementUI/icon",
             "order": "2-2"
+          },
+          {
+            "title": "ColorPicker",
+            "key": "colorPicker",
+            "url": "/elementUI/colorPicker",
+            "order": "2-3"
           }
         ]
       },
