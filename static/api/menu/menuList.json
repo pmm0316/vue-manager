@@ -49,14 +49,22 @@
           {
             "title": "vddl",
             "key": "vddl",
-            "url": "/drag/vddl",
-            "order": "3-2"
-          },
-          {
-            "title": "vddlSimpleChart",
-            "key": "vddlSimpleChart",
-            "url": "/drag/vddlSimpleChart",
-            "order": "3-3"
+            "url": "/drag",
+            "order": "3-2",
+            "children": [
+              {
+                "title": "vddl",
+                "key": "vddl1",
+                "url": "/drag/vddl",
+                "order": "3-1-1"
+              },
+              {
+                "title": "vddlSimpleChart",
+                "key": "vddlSimpleChart",
+                "url": "/drag/vddlSimpleChart",
+                "order": "3-1-2"
+              }
+            ]
           }
         ]
       },

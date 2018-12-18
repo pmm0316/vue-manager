@@ -21,7 +21,6 @@
       </div>
       <div class="chart col">
         <chart1
-          :dataSource="dataSource"
           :chartType="value"/>
       </div>
     </div>
@@ -42,44 +41,40 @@ export default {
         {
           value: 'line',
           label: '折线图'
-        },
-        {
-          value: 'pie',
-          label: '饼图'
         }
-      ],
-      dataSource: [
-        {
-          title: '衬衫',
-          value: 5,
-          selected: true
-        },
-        {
-          title: '羊毛衫',
-          value: 20,
-          selected: true
-        },
-        {
-          title: '雪纺衫',
-          value: 36,
-          selected: true
-        },
-        {
-          title: '裤子',
-          value: 10,
-          selected: true
-        },
-        {
-          title: '高跟鞋',
-          value: 10,
-          selected: true
-        },
-        {
-          title: '袜子',
-          value: 20,
-          selected: true
-        }
-      ]
+      ] // ,
+      // dataSource: [
+      //   {
+      //     title: '衬衫',
+      //     value: 5,
+      //     selected: true
+      //   },
+      //   {
+      //     title: '羊毛衫',
+      //     value: 20,
+      //     selected: true
+      //   },
+      //   {
+      //     title: '雪纺衫',
+      //     value: 36,
+      //     selected: true
+      //   },
+      //   {
+      //     title: '裤子',
+      //     value: 10,
+      //     selected: true
+      //   },
+      //   {
+      //     title: '高跟鞋',
+      //     value: 10,
+      //     selected: true
+      //   },
+      //   {
+      //     title: '袜子',
+      //     value: 20,
+      //     selected: true
+      //   }
+      // ]
     }
   },
   components: {
