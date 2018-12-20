@@ -29,6 +29,7 @@ export default {
     MenuItem
   },
   mounted () {
+    console.log(this.$router)
     axios.get('/static/api/menu/menuList.json').then(res => {
       this.menuList = res.data.data.menuList
     })

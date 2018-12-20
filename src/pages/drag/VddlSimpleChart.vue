@@ -79,7 +79,7 @@
       id="right"
       @drop.prevent="onDrop"
       @dragover.prevent="dragOver">
-      <div class="chart" id="chart" style="width: 600px;height:400px;">
+      <div class="chart" ref="chart" style="width: 600px;height:400px;">
       </div>
     </div>
   </div>
@@ -263,7 +263,7 @@ export default {
     },
     drawChart () {
       if (!this.myChart) {
-        this.myChart = echarts.init(document.getElementById('chart'))
+        this.myChart = echarts.init(this.$refs.chart)
       }
       console.log(this.myChart)
       console.log(this.option)

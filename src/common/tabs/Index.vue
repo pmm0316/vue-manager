@@ -10,7 +10,9 @@
         :label="item.title"
         :name="item.order">
         <div class="content">
-          <router-view/>
+          <keep-alive>
+            <router-view/>
+          </keep-alive>
         </div>
       </el-tab-pane>
     </el-tabs>
