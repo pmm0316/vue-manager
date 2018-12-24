@@ -1,6 +1,6 @@
 <template>
     <el-container>
-      <el-aside>
+      <el-aside :width="asideWidth">
         <nav-left/>
       </el-aside>
       <el-container>
@@ -18,12 +18,17 @@
 import NavLeft from '../common/nav-left'
 import MainHeader from '../common/header'
 import Tabs from '../common/tabs'
+import {mapGetters} from 'vuex'
+
 export default {
   name: 'Admin',
   components: {
     NavLeft,
     MainHeader,
     Tabs
+  },
+  computed: {
+    ...mapGetters(['asideWidth'])
   }
 }
 </script>
@@ -33,7 +38,6 @@ export default {
   .el-container {
     .el-aside {
       background-color: $theme-color;
-      width: 14%;
       height: calc(100vh);
     }
     .el-container {

@@ -11,7 +11,7 @@ export default {
 <style scoped lang='scss'>
   @import '../../style/common.scss';
   .header {
-    height: 53px;
+    height: 50px;
     width: 100%;
     box-sizing: border-box;
     background-color: $header-bg-color;

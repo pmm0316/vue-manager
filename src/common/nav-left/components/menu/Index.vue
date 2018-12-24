@@ -1,6 +1,7 @@
 <template>
     <div class="menu">
       <el-menu
+        :collapse="menuIsCollapse"
         default-active="1"
         class="el-menu-vertical-demo"
         background-color="#001529"
@@ -17,6 +18,7 @@
 <script>
 import axios from 'axios'
 import MenuItem from './MenuItem'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'Menu',
@@ -28,8 +30,10 @@ export default {
   components: {
     MenuItem
   },
+  computed: {
+    ...mapGetters(['menuIsCollapse'])
+  },
   mounted () {
-    console.log(this.$router)
     axios.get('/static/api/menu/menuList.json').then(res => {
       this.menuList = res.data.data.menuList
     })

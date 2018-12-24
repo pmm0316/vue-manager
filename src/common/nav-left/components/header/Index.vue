@@ -7,6 +7,9 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
+import { SET_MENU_IS_COLLAPSE, SET_ASIDE_WIDTH } from '@/store/types'
+
 export default {
   name: 'Index',
   data () {
@@ -17,7 +20,13 @@ export default {
   methods: {
     handleIconClick () {
       this.isActive = !this.isActive
-    }
+      this.setIsCollapse()
+      this.setAsideWidth()
+    },
+    ...mapMutations({
+      setIsCollapse: SET_MENU_IS_COLLAPSE,
+      setAsideWidth: SET_ASIDE_WIDTH
+    })
   }
 }
 </script>
@@ -25,7 +34,7 @@ export default {
 <style scoped lang='scss'>
   @import '../../../../style/common.scss';
   .header {
-    height: 52px;
+    height: 49px;
     width: 100%;
     background-color: $header-bg-color;
     .icon-wrapper {

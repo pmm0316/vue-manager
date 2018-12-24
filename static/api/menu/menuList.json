@@ -93,6 +93,19 @@
             "order": "5-1"
           }
         ]
+      },
+      {
+        "title": "日历",
+        "key": "calendar",
+        "url": "/",
+        "order": "6",
+        "children": [
+          {
+            "title": "schedule",
+            "url": "/calendar/schedule",
+            "order": "6-1"
+          }
+        ]
       }
     ]
   }

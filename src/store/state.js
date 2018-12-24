@@ -5,7 +5,9 @@
  */
 const state = {
   closableTabs: [], // tabs的集合
-  closableTabsValue: '' // 当前tab的value值，value值为唯一的order
+  closableTabsValue: '', // 当前tab的value值，value值为唯一的order
+  menuIsCollapse: false,
+  asideWidth: '250px'
 }
 
 export default state

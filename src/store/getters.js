@@ -5,3 +5,5 @@
  */
 export const closableTabs = state => state.closableTabs
 export const closableTabsValue = state => state.closableTabsValue
+export const menuIsCollapse = state => state.menuIsCollapse
+export const asideWidth = state => state.asideWidth
