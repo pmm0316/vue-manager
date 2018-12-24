@@ -8,6 +8,7 @@ import Dnd from '../pages/drag/Dnd'
 import Vddl from '../pages/drag/Vddl'
 import ChartBasic from '../pages/echarts/Basic'
 import VddlSimpleChart from '../pages/drag/vddlSimpleChart'
+import GoJSSample from '../pages/gojs/Sample'
 
 Vue.use(Router)
 
@@ -25,7 +26,7 @@ export default new Router({
       component: Button
     },
     {
-      path: '/elementUI/icon',
+      path: '/elementUI/iconfont',
       name: 'Icon',
       component: Icon
     },
@@ -53,6 +54,11 @@ export default new Router({
       path: '/drag/vddlSimpleChart',
       name: 'VddlSimpleChart',
       component: VddlSimpleChart
+    },
+    {
+      path: '/gojs/sample',
+      name: 'GoJSSample',
+      component: GoJSSample
     }
   ]
 })
