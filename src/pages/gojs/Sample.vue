@@ -54,8 +54,11 @@ export default {
       myDiagram.model = myModel
     },
     initialGoJsPage2 () {
+      if (this.myDiagram2) {
+        return
+      }
       let $ = go.GraphObject.make // 拿到画笔
-      let myDiagram = $(go.Diagram, 'myDiagramDiv2',
+      this.myDiagram2 = $(go.Diagram, 'myDiagramDiv2',
         {
           'undoManager.isEnabled': true, // 允许Ctrl-Z撤消，Ctrl-Y重做
           layout: $(go.TreeLayout, {
@@ -65,6 +68,7 @@ export default {
         {
           initialContentAlignment: go.Spot.Center // 图形居中
         })
+      let myDiagram = this.myDiagram2
       let myModel = $(go.TreeModel) // 拿到模型
       myModel.nodeDataArray = [
         { key: 'A' },
@@ -77,7 +81,7 @@ export default {
     }
   },
   mounted () {
-    this.initialGoJsPage1()
+    // this.initialGoJsPage1()
     this.initialGoJsPage2()
   }
 }

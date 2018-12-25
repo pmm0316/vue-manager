@@ -17,11 +17,6 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'Dashboard',
-      component: Dashboard
-    },
-    {
       path: '/dashboard',
       name: 'Dashboard',
       component: Dashboard
@@ -32,7 +27,7 @@ export default new Router({
       component: Button
     },
     {
-      path: '/elementUI/iconfont',
+      path: '/elementUI/icon',
       name: 'Icon',
       component: Icon
     },

@@ -76,6 +76,7 @@
         "children": [
           {
             "title": "基本",
+            "key": "/eCharts/basic",
             "url": "/eCharts/basic",
             "order": "4-1"
           }
@@ -84,11 +85,12 @@
       {
         "title": "GoJS",
         "key": "goJS",
-        "url": "/",
+        "url": "/goJS",
         "order": "5",
         "children": [
           {
             "title": "Sample",
+            "key": "/gojs/sample",
             "url": "/gojs/sample",
             "order": "5-1"
           }
@@ -97,7 +99,7 @@
       {
         "title": "日历",
         "key": "calendar",
-        "url": "/",
+        "url": "/calendar",
         "order": "6",
         "children": [
           {

@@ -56,15 +56,21 @@ export default {
      * @returns {boolean}
      */
     isExistOfTab (tabs, menuItem) {
-      let flag = false
+      // let flag = false
+      console.log('menuItem', menuItem)
+      console.log('tabs', tabs)
       if (tabs.length > 0) {
-        tabs.forEach(obj => {
-          if (obj.key === menuItem.key) {
-            flag = true
-          }
+        return tabs.some(v => {
+          return v.key === menuItem.key
         })
+        // tabs.forEach(obj => {
+        //   if (obj.order === menuItem.order) {
+        //     flag = true
+        //   }
+        // })
       }
-      return flag
+      // return flag
+      return false
     },
     /**
      * 点击菜单item事件
@@ -72,12 +78,13 @@ export default {
      */
     handleMenuItemClick (item) {
       let tabs = this.closableTabs
-      if (!this.isExistOfTab(tabs, item)) {
-        tabs.push(item)
-        this.setTabs(tabs)
-      }
       this.setTabsValue(item.order)
       this.$router.push(item.url)
+      if (this.isExistOfTab(tabs, item)) {
+        return
+      }
+      tabs.push(item)
+      this.setTabs(tabs)
     },
     ...mapMutations({
       setTabs: SET_TABS,

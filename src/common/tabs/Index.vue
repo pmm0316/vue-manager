@@ -21,6 +21,7 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import { SET_TABS, SET_CLOSABLE_TABS_VALUE } from '@/store/types'
+
 export default {
   name: 'Index',
   data () {
@@ -37,11 +38,17 @@ export default {
      * @param self
      */
     tabClick (self) {
-      this.closableTabs.forEach(item => {
-        if (item.order === self.name) {
-          this.$router.push(item.url)
+      for (let i = 0; i < this.closableTabs.length; i++) {
+        if (this.closableTabs[i].order === self.name) {
+          this.$router.push(this.closableTabs[i].url)
+          return
         }
-      })
+      }
+      // this.closableTabs.forEach(item => {
+      //   if (item.order === self.name) {
+      //     this.$router.push(item.url)
+      //   }
+      // })
     },
     /**
      * 通过order得到当前的路由url
@@ -103,4 +110,11 @@ export default {
       overflow-y: auto;
     }
   }
+  /*.fade-enter-active, .fade-leave-active {*/
+    /*transition: opacity .3s;*/
+  /*}*/
+  /*.fade-enter, .fade-leave-to !* .fade-leave-active below version 2.1.8 *! {*/
+    /*transition: opacity .2s;*/
+    /*opacity: 0;*/
+  /*}*/
 </style>

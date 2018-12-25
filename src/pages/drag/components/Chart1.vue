@@ -6,7 +6,7 @@
 import echarts from 'echarts'
 // import pieOption from './pieOption'
 export default {
-  name: 'Chart1',
+  name: 'drag-chart1',
   props: {
     chartType: {
       type: 'string'

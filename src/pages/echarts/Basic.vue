@@ -9,15 +9,15 @@
             :value="item.value">
           </el-option>
         </el-select>
-        <div class="operation-item data-source">
-          <el-button
-            @click="handleTagClick(index)"
-            :class="{'selected': item.selected}"
-            :key="item.title"
-            v-for="(item, index) in dataSource">
-            {{item.title}}
-          </el-button>
-        </div>
+        <!--<div class="operation-item data-source">-->
+          <!--<el-button-->
+            <!--@click="handleTagClick(index)"-->
+            <!--:class="{'selected': item.selected}"-->
+            <!--:key="item.title"-->
+            <!--v-for="(item, index) in dataSource">-->
+            <!--{{item.title}}-->
+          <!--</el-button>-->
+        <!--</div>-->
       </div>
       <div class="chart col">
         <chart1
@@ -42,7 +42,7 @@ export default {
           value: 'line',
           label: '折线图'
         }
-      ] // ,
+      ]
       // dataSource: [
       //   {
       //     title: '衬衫',
@@ -81,9 +81,9 @@ export default {
     Chart1
   },
   methods: {
-    handleTagClick (index) {
-      this.dataSource[index].selected = !this.dataSource[index].selected
-    }
+    // handleTagClick (index) {
+    //   this.dataSource[index].selected = !this.dataSource[index].selected
+    // }
   }
 }
 </script>
@@ -96,21 +96,21 @@ export default {
       .operation-item {
         margin-bottom: 20px;
       }
-      .data-source {
-        width: 200px;
-        text-align: center;
-        .el-button {
-          width: 80px;
-          margin-bottom: 5px;
-          &:first-of-type {
-            margin-left: 10px;
-          }
-          &.selected {
-            background-color: #67C23A;
-            color: #fff;
-          }
-        }
-      }
+      /*.data-source {*/
+        /*width: 200px;*/
+        /*text-align: center;*/
+        /*.el-button {*/
+          /*width: 80px;*/
+          /*margin-bottom: 5px;*/
+          /*&:first-of-type {*/
+            /*margin-left: 10px;*/
+          /*}*/
+          /*&.selected {*/
+            /*background-color: #67C23A;*/
+            /*color: #fff;*/
+          /*}*/
+        /*}*/
+      /*}*/
     }
     .chart {
       width: 100%;
