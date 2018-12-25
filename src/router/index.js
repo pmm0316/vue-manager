@@ -17,6 +17,11 @@ export default new Router({
   mode: 'history',
   routes: [
     {
+      path: '/',
+      name: 'Dashboard',
+      component: Dashboard
+    },
+    {
       path: '/dashboard',
       name: 'Dashboard',
       component: Dashboard

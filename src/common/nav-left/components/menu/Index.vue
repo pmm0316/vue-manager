@@ -1,6 +1,7 @@
 <template>
     <div class="menu">
       <el-menu
+        mode="vertical"
         :collapse="menuIsCollapse"
         default-active="1"
         class="el-menu-vertical-demo"

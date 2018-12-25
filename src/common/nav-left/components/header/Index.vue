@@ -46,6 +46,7 @@ export default {
       float: right;
       .iconfont {
         font-size: 36px;
+        cursor: pointer;
       }
     }
   }

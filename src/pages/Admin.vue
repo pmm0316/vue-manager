@@ -39,6 +39,8 @@ export default {
     .el-aside {
       background-color: $theme-color;
       height: calc(100vh);
+      overflow: hidden;
+      transition: .5s;
     }
     .el-container {
       .el-header {
