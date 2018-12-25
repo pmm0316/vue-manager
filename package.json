@@ -16,6 +16,8 @@
     "echarts": "^4.2.0-rc.2",
     "element-ui": "^2.4.8",
     "gojs": "^1.8.35",
+    "jquery": "^3.3.1",
+    "jquery-ui": "^1.12.1",
     "vddl": "^0.7.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",

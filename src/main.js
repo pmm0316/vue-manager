@@ -7,6 +7,8 @@ import aweDnd from 'awe-dnd'
 import vddl from 'vddl'
 import store from './store'
 import './common/element'
+import 'jquery'
+import 'jquery-ui'
 
 Vue.config.productionTip = false
 Vue.use(aweDnd)

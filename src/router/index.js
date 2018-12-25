@@ -9,6 +9,7 @@ import Vddl from '../pages/drag/Vddl'
 import ChartBasic from '../pages/echarts/Basic'
 import VddlSimpleChart from '../pages/drag/vddlSimpleChart'
 import GoJSSample from '../pages/gojs/Sample'
+import HTMLInteraction from '../pages/gojs/HTMLInteraction'
 import Schedule from '../pages/calendar/schedule'
 
 Vue.use(Router)
@@ -60,6 +61,11 @@ export default new Router({
       path: '/gojs/sample',
       name: 'GoJSSample',
       component: GoJSSample
+    },
+    {
+      path: '/gojs/htmlInteraction',
+      name: 'HTMLInteraction',
+      component: HTMLInteraction
     },
     {
       path: '/calendar/schedule',

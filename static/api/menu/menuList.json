@@ -93,6 +93,12 @@
             "key": "/gojs/sample",
             "url": "/gojs/sample",
             "order": "5-1"
+          },
+          {
+            "title": "htmlInteraction",
+            "key": "/gojs/htmlInteraction",
+            "url": "/gojs/htmlInteraction",
+            "order": "5-2"
           }
         ]
       },
