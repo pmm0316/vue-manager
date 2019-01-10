@@ -1,4 +1,4 @@
-.span-item {
+.data-item {
   font-size: 14px;
   display: block;
   width: 70px;
@@ -9,7 +9,5 @@
   border-radius: 5px;
   margin-bottom: 2px;
   box-shadow: 0 0 3px #ccc;
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 }

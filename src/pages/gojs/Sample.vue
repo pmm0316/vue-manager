@@ -83,6 +83,9 @@ export default {
   mounted () {
     // this.initialGoJsPage1()
     this.initialGoJsPage2()
+  },
+  destroyed () {
+    console.log('destroyed')
   }
 }
 </script>

@@ -8,11 +8,15 @@ import Vuex from 'vuex'
 import state from './state'
 import * as getters from './getters'
 import mutations from './mutations'
+import echarts from './modules/echarts'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state,
   getters,
-  mutations
+  mutations,
+  modules: {
+    echarts
+  }
 })

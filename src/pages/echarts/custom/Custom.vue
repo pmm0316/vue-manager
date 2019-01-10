@@ -1,45 +1,47 @@
 <template>
   <div class="container">
-    <div class="left">
+    <el-col class="left" :span="8">
+      <div class="operation-btns">
+        <el-button @click="saveChart" type="primary" size="mini">保存</el-button>
+      </div>
       <el-col :span="10">
         <el-collapse>
           <el-collapse-item title="图表类型" name="1">
             <div class="content-item">
-            <span
-              v-for="item in chartTypes"
-              :key="item.type"
-              class="span-item"
-              draggable="true"
-              @drag.prevent="onDrag"
-              @dragend.prevent="onDragend"
-              @dragstart="onDragStart(item)">
-            {{item.title}}
-          </span>
+              <chart-type-item
+                v-for="item in chartTypes"
+                :key="item.type"
+                :item="item"
+                draggable="true"
+                @drag.prevent="onDrag"
+                @dragend.prevent="onDragend"
+                @dragstart="onDragStart(item)"/>
             </div>
           </el-collapse-item>
           <el-collapse-item title="x轴数据" name="2">
             <div class="content-item">
-            <span
-              draggable="true"
-              @drag.prevent="onDrag"
-              @dragend.prevent="onDragend"
-              @dragstart="onDragStart(item)"
-              v-for="item in category"
-              :key="item.id"
-              class="span-item">
-            {{item.name}}
-          </span>
+              <span
+                draggable="true"
+                @drag.prevent="onDrag"
+                @dragend.prevent="onDragend"
+                @dragstart="onDragStart(item)"
+                v-for="item in category"
+                :key="item.id"
+                class="data-item">
+                {{item.name}}
+              </span>
             </div>
           </el-collapse-item>
           <el-collapse-item title="y轴数据" name="3">
             <div class="content-item">
-            <span
-              draggable="true"
-              v-for="item in legends"
-              @dragstart="onDragStart(item)"
-              :key="item.title" class="span-item">
-            {{item.title}}
-          </span>
+              <span
+                draggable="true"
+                v-for="item in legends"
+                @dragstart="onDragStart(item)"
+                :key="item.title"
+                class="data-item">
+                {{item.title}}
+              </span>
             </div>
           </el-collapse-item>
         </el-collapse>
@@ -50,7 +52,7 @@
           <el-input
             class="item"
             size="mini"
-            placeholder="请输入标题名"
+            placeholder="请输入标题"
             @blur="titleTextBlur"
             v-model="titleText"/>
           <el-select
@@ -73,22 +75,27 @@
         <div class="edit-item">
         </div>
       </el-col>
-    </div>
+    </el-col>
     <div
-      class="right"
+      class="content"
       id="right"
       @drop.prevent="onDrop"
       @dragover.prevent="dragOver">
       <div class="chart" ref="chart" style="width: 600px;height:400px;">
       </div>
     </div>
+    <el-col :span="3" class="chart-display">
+      <el-button v-for="(item, index) in chartList" :key="index" @click="showChart(item)">{{item.title.text}}</el-button>
+    </el-col>
   </div>
 </template>
 
 <script>
-import Chart1 from './components/Chart1'
 import echarts from 'echarts'
-import { TYPE } from '../../common/constant/echarts'
+import { TYPE } from '../../../common/constant/echarts'
+import ChartTypeItem from './components/ChartTypeItem'
+import { mapGetters, mapMutations } from 'vuex'
+
 export default {
   name: 'VddlSimpleChart',
   data () {
@@ -102,12 +109,14 @@ export default {
           title: '柱状图',
           type: 'bar',
           dataType: 'chart',
+          className: 'icon-barchart',
           id: '1'
         },
         {
           title: '折线图',
           type: 'line',
           dataType: 'chart',
+          className: 'icon-linechart',
           id: '2'
         }
       ],
@@ -156,6 +165,7 @@ export default {
           dataType: 'data'
         }
       ],
+      list: [],
       option: {
         title: {
           text: '',
@@ -180,22 +190,37 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters({
+      chartList: 'echarts/chartList'
+    })
+  },
   components: {
-    Chart1
+    ChartTypeItem
   },
   methods: {
+    ...mapMutations({
+      addChart: 'echarts/addChart'
+    }),
+    showChart (item) {
+      this.drawChart(item)
+    },
+    saveChart () {
+      let option = JSON.parse(JSON.stringify(this.option))
+      this.addChart(option)
+    },
     titleTextBlur () {
       this.option.title.text = this.titleText
-      this.drawChart()
+      this.drawChart(this.option)
     },
     changeTitleAlign () {
       this.option.title.x = this.titleX
-      this.drawChart()
+      this.drawChart(this.option)
     },
     changeTitleColor () {
       console.log(this.titleColor)
       this.option.title['textStyle']['color'] = this.titleColor
-      this.drawChart()
+      this.drawChart(this.option)
     },
     onDragStart (item) {
       console.log('onDragStart', item)
@@ -210,6 +235,7 @@ export default {
       console.log('onDragend')
     },
     onDrop () {
+      console.log('onDrop')
       let dataType = this.currentItem.dataType
       if (dataType === 'chart') {
         let type = this.currentItem.type
@@ -228,19 +254,6 @@ export default {
         for (let i = 0; i < data.length; i++) {
           this.option.xAxis.data.push(data[i].title)
         }
-        // if (!this.option.xAxis.data.includes(title)) {
-        //   this.option.xAxis.data.push(title)
-        // }
-        // let xLen = this.option.xAxis.data.length
-        // let yLen = this.option.series[0].data.length
-        // let lastValue = this.option.xAxis.data[xLen - 1]
-        // if (this.isLegend && xLen > 0 && (xLen - 1) === yLen) {
-        //   this.data.forEach(item => {
-        //     if (item.title === lastValue) {
-        //       this.option.series[0].data.push(item.value)
-        //     }
-        //   })
-        // }
       } else if (dataType === 'legend') {
         // this.isLegend = true
         let data = this.category[0].data
@@ -256,21 +269,21 @@ export default {
         })
       }
       console.log('option', this.option)
-      this.drawChart()
+      this.drawChart(this.option)
     },
     dragOver () {
       // console.log('dragOver')
     },
-    drawChart () {
+    drawChart (option) {
+      console.log('drawChart')
       if (!this.myChart) {
         this.myChart = echarts.init(this.$refs.chart)
       }
-      console.log(this.myChart)
-      console.log(this.option)
-      this.myChart.setOption(this.option)
+      this.myChart.setOption(option)
     }
   },
   mounted () {
+    console.log(this.chartList)
   }
 }
 </script>
@@ -278,10 +291,9 @@ export default {
 <style scoped lang='scss'>
   @import "./style.scss";
   .container {
+    box-sizing: border-box;
     .left {
-      width: 39%;
       min-width: 200px;
-      float: left;
       border: 1px solid #ccc;
       border-radius: 5px;
       .el-collapse {
@@ -298,17 +310,20 @@ export default {
         label {
           line-height: 30px;
           width: 74px;
-          font-size: 13px;
+          font-size: 12px;
         }
         .item {
           margin-left: 5px;
         }
       }
     }
-    .right {
-      float: right;
+    .content {
+      float: left;
       border: 1px solid #aaa;
-      width: 60%;
+      height: calc(78vh);
+    }
+    .chart-display {
+      border: 1px solid #aaa;
       height: calc(78vh);
     }
   }

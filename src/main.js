@@ -9,10 +9,15 @@ import store from './store'
 import './common/element'
 import 'jquery'
 import 'jquery-ui'
+import Notification from './component/notification'
 
 Vue.config.productionTip = false
+/**
+ * 注册全局组件
+ */
 Vue.use(aweDnd)
 Vue.use(vddl)
+Vue.use(Notification)
 
 /* eslint-disable no-new */
 new Vue({

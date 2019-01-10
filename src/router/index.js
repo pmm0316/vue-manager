@@ -7,7 +7,7 @@ import ColorPicker from '../pages/element-ui/ColorPicker'
 import Dnd from '../pages/drag/Dnd'
 import Vddl from '../pages/drag/Vddl'
 import ChartBasic from '../pages/echarts/Basic'
-import VddlSimpleChart from '../pages/drag/vddlSimpleChart'
+import ChartCustom from '../pages/echarts/custom/Custom'
 import GoJSSample from '../pages/gojs/Sample'
 import HTMLInteraction from '../pages/gojs/HTMLInteraction'
 import Schedule from '../pages/calendar/schedule'
@@ -53,9 +53,9 @@ export default new Router({
       component: ChartBasic
     },
     {
-      path: '/drag/vddlSimpleChart',
-      name: 'VddlSimpleChart',
-      component: VddlSimpleChart
+      path: '/eCharts/custom',
+      name: 'ChartCustom',
+      component: ChartCustom
     },
     {
       path: '/gojs/sample',

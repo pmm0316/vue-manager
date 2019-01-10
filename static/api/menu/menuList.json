@@ -57,12 +57,6 @@
                 "key": "vddl1",
                 "url": "/drag/vddl",
                 "order": "3-1-1"
-              },
-              {
-                "title": "vddlSimpleChart",
-                "key": "vddlSimpleChart",
-                "url": "/drag/vddlSimpleChart",
-                "order": "3-1-2"
               }
             ]
           }
@@ -79,6 +73,12 @@
             "key": "/eCharts/basic",
             "url": "/eCharts/basic",
             "order": "4-1"
+          },
+          {
+            "title": "DIY配置",
+            "key": "/eCharts/custom",
+            "url": "/eCharts/custom",
+            "order": "4-2"
           }
         ]
       },
