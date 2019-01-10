@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <el-col class="left" :span="8">
+    <el-col class="container-item left" :span="8">
       <div class="operation-btns">
         <el-button @click="saveChart" type="primary" size="mini">保存</el-button>
       </div>
@@ -8,14 +8,15 @@
         <el-collapse>
           <el-collapse-item title="图表类型" name="1">
             <div class="content-item">
-              <chart-type-item
+              <div
                 v-for="item in chartTypes"
                 :key="item.type"
-                :item="item"
                 draggable="true"
                 @drag.prevent="onDrag"
                 @dragend.prevent="onDragend"
-                @dragstart="onDragStart(item)"/>
+                @dragstart="onDragStart(item)">
+                <chart-type-item :item="item"/>
+              </div>
             </div>
           </el-collapse-item>
           <el-collapse-item title="x轴数据" name="2">
@@ -77,14 +78,13 @@
       </el-col>
     </el-col>
     <div
-      class="content"
-      id="right"
+      class="container-item content"
       @drop.prevent="onDrop"
       @dragover.prevent="dragOver">
       <div class="chart" ref="chart" style="width: 600px;height:400px;">
       </div>
     </div>
-    <el-col :span="3" class="chart-display">
+    <el-col :span="3" class="container-item chart-display">
       <el-button v-for="(item, index) in chartList" :key="index" @click="showChart(item)">{{item.title.text}}</el-button>
     </el-col>
   </div>
@@ -246,6 +246,7 @@ export default {
           this.option.series[0].type = TYPE.line
           this.option.title.text = this.currentItem.title
         }
+        this.titleText = this.option.title.text
         this.existChart = true // 图表已经选择
       } else if (dataType === 'data') {
         console.log(this.currentItem)
@@ -292,10 +293,13 @@ export default {
   @import "./style.scss";
   .container {
     box-sizing: border-box;
+    .container-item {
+      border-radius: 5px;
+      margin-right: 20px;
+    }
     .left {
       min-width: 200px;
       border: 1px solid #ccc;
-      border-radius: 5px;
       .el-collapse {
         border-right: 1px solid #ccc;
         .content-item {
