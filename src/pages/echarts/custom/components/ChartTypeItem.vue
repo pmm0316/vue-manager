@@ -19,7 +19,6 @@ export default {
     display: block;
     width: 70px;
     height: 60px;
-    //line-height: 30px;
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 5px;

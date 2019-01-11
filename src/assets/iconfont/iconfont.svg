@@ -32,6 +32,15 @@ Created by iconfont
     <glyph glyph-name="barchart" unicode="&#59312;" d="M888 104H200V728c0 4.4-3.6 8-8 8h-56c-4.4 0-8-3.6-8-8v-688c0-4.4 3.6-8 8-8h752c4.4 0 8 3.6 8 8v56c0 4.4-3.6 8-8 8zM288 184h56c4.4 0 8 3.6 8 8V336c0 4.4-3.6 8-8 8h-56c-4.4 0-8-3.6-8-8v-144c0-4.4 3.6-8 8-8zM440 184h56c4.4 0 8 3.6 8 8V512c0 4.4-3.6 8-8 8h-56c-4.4 0-8-3.6-8-8v-320c0-4.4 3.6-8 8-8zM592 184h56c4.4 0 8 3.6 8 8V434c0 4.4-3.6 8-8 8h-56c-4.4 0-8-3.6-8-8v-242c0-4.4 3.6-8 8-8zM744 184h56c4.4 0 8 3.6 8 8V592c0 4.4-3.6 8-8 8h-56c-4.4 0-8-3.6-8-8v-400c0-4.4 3.6-8 8-8z"  horiz-adv-x="1024" />
 
     
+    <glyph glyph-name="juzhongduiqi" unicode="&#60544;" d="M96 768h832v-96H96zM96 320h832v-96H96zM224 544h576v-96H224zM224 96h576v-96H224z"  horiz-adv-x="1024" />
+
+    
+    <glyph glyph-name="youduiqi" unicode="&#60546;" d="M96 768h832v-96H96zM96 320h832v-96H96zM352 544h576v-96H352zM352 96h576v-96H352z"  horiz-adv-x="1024" />
+
+    
+    <glyph glyph-name="zuoduiqi" unicode="&#60550;" d="M96 768h832v-96H96zM96 320h832v-96H96zM96 544h576v-96H96zM96 96h576v-96H96z"  horiz-adv-x="1024" />
+
+    
 
 
   </font>

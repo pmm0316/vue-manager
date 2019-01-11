@@ -1,6 +1,6 @@
 /**
  * CREATED DATE: 2018/10/4 21:17:21
- * author: Absent Min
+ * author: mingmingbuzai
  */
 import Vue from 'vue'
 import {
