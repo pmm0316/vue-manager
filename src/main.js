@@ -10,6 +10,7 @@ import './common/element'
 import 'jquery'
 import 'jquery-ui'
 import Notification from './component/notification'
+import MyTree from './component/my-tree'
 
 Vue.config.productionTip = false
 /**
@@ -18,6 +19,7 @@ Vue.config.productionTip = false
 Vue.use(aweDnd)
 Vue.use(vddl)
 Vue.use(Notification)
+Vue.use(MyTree)
 
 /* eslint-disable no-new */
 new Vue({

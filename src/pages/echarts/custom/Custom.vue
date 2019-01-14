@@ -1,41 +1,52 @@
 <template>
   <div class="container">
-    <el-col class="container-item left" :span="8">
-      <el-col :span="12" class="chart">
-        <div class="title">图表</div>
-        <el-tabs v-model="activeName" @tab-click="handleClick">
-          <el-tab-pane label="数据" name="first">
-            <div>
-              <el-collapse>
-                <el-collapse-item title="图表类型" name="1">
-                  <div class="content-item">
+    <el-row>
+      <el-col class="container-item left" :span="8">
+        <el-col :span="12" class="chart">
+          <div class="title">图表</div>
+          <el-tabs v-model="activeName" @tab-click="handleClick">
+            <el-tab-pane class="data" label="数据" name="first">
+              <div>
+                <el-collapse>
+                  <el-collapse-item title="图表类型" name="1">
+                    <div class="content-item">
+                      <div
+                        v-for="item in chartTypes"
+                        :key="item.type"
+                        draggable="true"
+                        @drag.prevent="onDrag"
+                        @dragend.prevent="onDragend"
+                        @dragstart="onDragStart(item)">
+                        <chart-type-item :item="item"/>
+                      </div>
+                    </div>
+                  </el-collapse-item>
+                  <!--<el-collapse-item title="x轴数据" name="2">-->
+                    <!--<div class="content-item">-->
+                    <!--<span-->
+                      <!--draggable="true"-->
+                      <!--@drag.prevent="onDrag"-->
+                      <!--@dragend.prevent="onDragend"-->
+                      <!--@dragstart="onDragStart(item)"-->
+                      <!--v-for="item in category"-->
+                      <!--:key="item.id"-->
+                      <!--class="data-item">-->
+                      <!--{{item.name}}-->
+                    <!--</span>-->
+                    <!--</div>-->
+                  <!--</el-collapse-item>-->
+                  <div class="x-data">
+                    <div class="title">x轴数据</div>
                     <div
-                      v-for="item in chartTypes"
-                      :key="item.type"
-                      draggable="true"
-                      @drag.prevent="onDrag"
-                      @dragend.prevent="onDragend"
-                      @dragstart="onDragStart(item)">
-                      <chart-type-item :item="item"/>
+                      class="content"
+                      @drop.prevent="onDrop()"
+                      @dragover.prevent="dragOver()">
+                      <div class="field empty">请把字段拖入到此处</div>
+                      <div class="field">aaa</div>
                     </div>
                   </div>
-                </el-collapse-item>
-                <el-collapse-item title="x轴数据" name="2">
-                  <div class="content-item">
-                    <span
-                      draggable="true"
-                      @drag.prevent="onDrag"
-                      @dragend.prevent="onDragend"
-                      @dragstart="onDragStart(item)"
-                      v-for="item in category"
-                      :key="item.id"
-                      class="data-item">
-                      {{item.name}}
-                    </span>
-                  </div>
-                </el-collapse-item>
-                <el-collapse-item title="y轴数据" name="3">
-                  <div class="content-item">
+                  <el-collapse-item title="y轴数据" name="3">
+                    <div class="content-item">
                     <span
                       draggable="true"
                       v-for="item in legends"
@@ -44,77 +55,105 @@
                       class="data-item">
                       {{item.title}}
                     </span>
+                    </div>
+                  </el-collapse-item>
+                </el-collapse>
+              </div>
+            </el-tab-pane>
+            <el-tab-pane label="样式" name="second" class="style">
+              <el-collapse>
+                <el-collapse-item name="style-title">
+                  <template slot="title">
+                    标题&nbsp;&nbsp;&nbsp;<el-checkbox @change="changeTitleShow" v-model="custom.title.show"></el-checkbox>
+                  </template>
+                  <div class="style-item">
+                    <el-input
+                      class="item"
+                      size="mini"
+                      placeholder="请输入标题"
+                      @blur="titleTextBlur"
+                      v-model="custom.title.text"/>
+                  </div>
+                  <div class="style-item">
+                    <el-color-picker
+                      @change="changeTitleColor"
+                      class="item"
+                      v-model="custom.title.textStyle.color"
+                      size="mini">
+                    </el-color-picker>
+                    <el-select
+                      v-model="custom.title.textStyle.fontSize"
+                      size="mini"
+                      @change="changeTitleFontSize">
+                      <el-option
+                        :value="fontSize"
+                        :label="fontSize"
+                        v-for="fontSize in fontSizeList"
+                        :key="fontSize">
+                      </el-option>
+                    </el-select>
+                    <el-select
+                      class="font-family-select"
+                      v-model="custom.title.textStyle.fontFamily"
+                      size="mini"
+                      @change="changeTitleFontFamily">
+                      <el-option
+                        :value="fontFamily"
+                        :label="fontFamily"
+                        v-for="fontFamily in fontFamilyList"
+                        :key="fontFamily">
+                      </el-option>
+                    </el-select>
+                  </div>
+                  <div class="style-item">
+                    <div class="box">
+                      <p class="text">对齐</p>
+                      <div class="icon-wrapper">
+                        <i
+                          @click="handleAlignIconClick(index)"
+                          :key="icon.className"
+                          class="iconfont"
+                          :class="[icon.className, icon.selected ? 'selected': '']"
+                          v-for="(icon, index) in alignIcons">
+                        </i>
+                      </div>
+                    </div>
                   </div>
                 </el-collapse-item>
               </el-collapse>
-            </div>
-          </el-tab-pane>
-          <el-tab-pane label="样式" name="second" class="style">
-            <el-collapse>
-              <el-collapse-item name="style-title">
-                <template slot="title">
-                  标题&nbsp;&nbsp;&nbsp;<el-checkbox @change="changeTitleShow" v-model="titleShow"></el-checkbox>
-                </template>
-                <div class="style-item">
-                  <el-input
-                    class="item"
-                    size="mini"
-                    placeholder="请输入标题"
-                    @blur="titleTextBlur"
-                    v-model="titleText"/>
-                </div>
-                <div class="style-item">
-                  <el-color-picker
-                    @change="changeTitleColor"
-                    class="item"
-                    v-model="titleColor"
-                    size="mini">
-                  </el-color-picker>
-                  <el-select v-model="titleFontSize" size="mini" @change="changeTitleFontSize">
-                    <el-option
-                      :value="fontSize"
-                      :label="fontSize"
-                      v-for="fontSize in fontSizeList"
-                      :key="fontSize">
-                    </el-option>
-                  </el-select>
-                </div>
-                <div class="style-item">
-                  <div class="box">
-                    <p class="text">对齐</p>
-                    <div class="icon-wrapper">
-                      <i
-                        @click="handleAlignIconClick(index)"
-                        :key="icon.className"
-                        class="iconfont"
-                        :class="[icon.className, icon.selected ? 'selected': '']"
-                        v-for="(icon, index) in alignIcons">
-                      </i>
-                    </div>
-                  </div>
-                </div>
-              </el-collapse-item>
-            </el-collapse>
-            <div class="edit-item">
-            </div>
-          </el-tab-pane>
-        </el-tabs>
+              <div class="edit-item">
+              </div>
+            </el-tab-pane>
+          </el-tabs>
+        </el-col>
+        <el-col :span="12" class="data-model">
+          <div class="title">数据模型</div>
+          <my-tree :data="treeData" @nodeDragStart="nodeDragStart"/>
+        </el-col>
       </el-col>
-      <el-col :span="12" class="data-model">
-        <div class="title">数据模型</div>
+      <el-col :span="13" class="container-item">
+        <div
+          @click="handleChartItemClick('chart1')"
+          class="chart-item"
+          @drop.prevent="onDrop('chart1')"
+          @dragover.prevent="dragOver('chart1')">
+          <div class="chart" ref="chart1" style="width: 600px;height:300px;">
+          </div>
+        </div>
+        <div
+          @click="handleChartItemClick('chart2')"
+          class="chart-item"
+          @drop.prevent="onDrop('chart2')"
+          @dragover.prevent="dragOver('chart2')">
+          <div class="chart" ref="chart2" style="width: 600px;height:300px;">
+          </div>
+        </div>
       </el-col>
-    </el-col>
-    <div
-      class="container-item content"
-      @drop.prevent="onDrop"
-      @dragover.prevent="dragOver">
-      <div class="chart" ref="chart" style="width: 600px;height:400px;">
-      </div>
-    </div>
-    <el-col :span="3" class="container-item chart-display">
-      <el-button @click="saveChart" type="primary" size="mini">保存</el-button>
-      <el-button v-for="(item, index) in chartList" :key="index" @click="showChart(item)">{{item.title.text}}</el-button>
-    </el-col>
+      <el-col :span="2" class="container-item chart-display">
+        <el-button @click="saveChart" type="primary" size="mini">保存</el-button>
+        <el-button v-for="(item, index) in chartList" :key="index" @click="showChart(item)">{{item.title.text}}</el-button>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -128,7 +167,17 @@ export default {
   name: 'VddlSimpleChart',
   data () {
     return {
-      titleShow: true,
+      custom: {
+        title: {
+          show: true,
+          text: '',
+          textStyle: {
+            color: '#011',
+            fontSize: 14,
+            fontFamily: 'sans-serif'
+          }
+        }
+      },
       alignIcons: [
         {
           name: 'left',
@@ -146,12 +195,9 @@ export default {
           selected: false
         }
       ],
+      fontFamilyList: ['sans-serif', 'serif', 'monospace', 'Arial', 'Microsoft YaHei'],
       fontSizeList: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-      titleFontSize: 14,
       activeName: 'first',
-      titleText: '', // 图表的标题
-      titleX: '', // 标题位置(左边，居中，右边)
-      titleColor: '#011', // 标题颜色
       myChart: null,
       chartTypes: [
         {
@@ -175,6 +221,42 @@ export default {
           dataType: 'legend'
         }
       ],
+      treeData: {
+        id: 1,
+        name: '服装',
+        children: [
+          {
+            name: '衬衫',
+            value: 5,
+            dataType: 'data'
+          },
+          {
+            name: '羊毛衫',
+            value: 20,
+            dataType: 'data'
+          },
+          {
+            name: '雪纺衫',
+            value: 36,
+            dataType: 'data'
+          },
+          {
+            name: '裤子',
+            value: 10,
+            dataType: 'data'
+          },
+          {
+            name: '高跟鞋',
+            value: 10,
+            dataType: 'data'
+          },
+          {
+            name: '袜子',
+            value: 20,
+            dataType: 'data'
+          }
+        ]
+      },
       category: [
         {
           id: '1',
@@ -252,6 +334,22 @@ export default {
     ...mapMutations({
       addChart: 'echarts/addChart'
     }),
+    nodeDragStart (node) {
+      console.log('node', node)
+    },
+    handleChartItemClick (refName) {
+      this.currRefName = refName
+    },
+    /**
+     * 改变title的字体类型
+     */
+    changeTitleFontFamily () {
+      if (!this.existChart) {
+        return
+      }
+      this.option.title.textStyle.fontFamily = this.custom.title.textStyle.fontFamily
+      this.drawChart(this.option, this.currRefName)
+    },
     /**
      * 改变title的字体大小
      */
@@ -259,8 +357,8 @@ export default {
       if (!this.existChart) {
         return
       }
-      this.option.title.textStyle.fontSize = this.titleFontSize
-      this.drawChart(this.option)
+      this.option.title.textStyle.fontSize = this.custom.title.textStyle.fontSize
+      this.drawChart(this.option, this.currRefName)
     },
     /**
      * 控制title是否显示
@@ -269,8 +367,8 @@ export default {
       if (!this.existChart) {
         return
       }
-      this.option.title.show = this.titleShow
-      this.drawChart(this.option)
+      this.option.title.show = this.custom.title.show
+      this.drawChart(this.option, this.currRefName)
     },
     /**
      * 点击对齐的icon
@@ -288,7 +386,7 @@ export default {
       })
       this.alignIcons[i].selected = true
       this.option.title.x = this.alignIcons[i].name
-      this.drawChart(this.option)
+      this.drawChart(this.option, this.currRefName)
     },
     /**
      * 点击tab页事件
@@ -306,16 +404,25 @@ export default {
     saveChart () {
       // 深拷贝
       let option = JSON.parse(JSON.stringify(this.option))
+      console.log(this.myChart.getOption())
       this.addChart(option)
     },
     titleTextBlur () {
-      this.option.title.text = this.titleText
-      this.drawChart(this.option)
+      if (!this.existChart) {
+        return
+      }
+      this.option.title.text = this.custom.title.text
+      this.drawChart(this.option, this.currRefName)
     },
+    /**
+     * 改变title字体颜色
+     */
     changeTitleColor () {
-      console.log(this.titleColor)
-      this.option.title['textStyle']['color'] = this.titleColor
-      this.drawChart(this.option)
+      if (!this.existChart) {
+        return
+      }
+      this.option.title['textStyle']['color'] = this.custom.title.textStyle.color
+      this.drawChart(this.option, this.currRefName)
     },
     onDragStart (item) {
       console.log('onDragStart', item)
@@ -329,8 +436,8 @@ export default {
     onDragend (ev) {
       console.log('onDragend')
     },
-    onDrop () {
-      console.log('onDrop')
+    onDrop (refName) {
+      console.log('onDrop', refName)
       let dataType = this.currentItem.dataType
       if (dataType === 'chart') {
         let type = this.currentItem.type
@@ -341,7 +448,7 @@ export default {
           this.option.series[0].type = TYPE.line
           this.option.title.text = this.currentItem.title
         }
-        this.titleText = this.option.title.text
+        this.custom.title.text = this.option.title.text
         this.existChart = true // 图表已经选择
       } else if (dataType === 'data') {
         console.log(this.currentItem)
@@ -364,8 +471,8 @@ export default {
           this.option.series[0].data.push(value)
         })
       }
-      console.log('option', this.option)
-      this.drawChart(this.option)
+      this.currRefName = refName
+      this.drawChart(this.option, refName)
     },
     dragOver () {
       // console.log('dragOver')
@@ -374,11 +481,11 @@ export default {
      * 根据配置数据，画出图表
      * @param option
      */
-    drawChart (option) {
-      console.log('drawChart')
-      if (!this.myChart) {
-        this.myChart = echarts.init(this.$refs.chart)
-      }
+    drawChart (option, refName) {
+      // if (!this.myChart) {
+      //
+      // }
+      this.myChart = echarts.init(this.$refs[refName])
       this.myChart.setOption(option)
     }
   },
@@ -394,12 +501,12 @@ export default {
     font-size: 14px;
     box-sizing: border-box;
     .container-item {
+      border: 1px solid #ccc;
       border-radius: 3px;
-      margin-right: 20px;
-      height: calc(78vh);
+      margin-left: 10px;
+      height: calc(75vh);
     }
     .left {
-      border: 1px solid #ccc;
       .title {
         text-align: center;
         border-bottom: 1px solid #ccc;
@@ -414,6 +521,25 @@ export default {
             margin-left: 10px;
           }
         }
+        .data {
+          .x-data {
+            .field {
+              background-color: cornflowerblue;
+              width: 100%;
+              font-size: 12px;
+              height: 15px;
+              border: 1px solid #ccc;
+              text-align: center;
+              border-radius: 10px;
+              color: #fff;
+              margin-top: 2px;
+              &.empty {
+                color: #999;
+                background-color: #eeeeee;
+              }
+            }
+          }
+        }
         .style {
           .style-item {
             display: flex;
@@ -421,6 +547,9 @@ export default {
             margin: 3px auto;
             .el-select {
               width: 65px;
+            }
+            .font-family-select {
+              width: 100px;
             }
             .box {
               display: flex;
@@ -463,13 +592,6 @@ export default {
           margin-left: 5px;
         }
       }
-    }
-    .content {
-      float: left;
-      border: 1px solid #aaa;
-    }
-    .chart-display {
-      border: 1px solid #aaa;
     }
   }
 </style>
