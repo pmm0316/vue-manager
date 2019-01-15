@@ -1,6 +1,7 @@
 <template>
   <ul>
     <tree-item
+      :draggable="draggable"
       @onDragStart="onDragStart"
       class="item"
       :model="data">
@@ -16,11 +17,12 @@ export default {
     TreeItem
   },
   props: {
-    data: Object
+    data: Object,
+    draggable: Boolean
   },
   methods: {
     onDragStart (node) {
-      this.$emit('nodeDragStart', node)
+      this.$emit('onDragStart', node)
     }
   }
 }

@@ -39,10 +39,10 @@
                     <div class="title">x轴数据</div>
                     <div
                       class="content"
-                      @drop.prevent="onDrop()"
-                      @dragover.prevent="dragOver()">
-                      <div class="field empty">请把字段拖入到此处</div>
-                      <div class="field">aaa</div>
+                      @drop.prevent="nodeDrop"
+                      @dragover.prevent="nodeDragOver">
+                      <div class="field empty" v-show="nodeList.length === 0">请把字段拖入到此处</div>
+                      <div class="field" v-for="node in nodeList" :key="node.name">{{node.name}}</div>
                     </div>
                   </div>
                   <el-collapse-item title="y轴数据" name="3">
@@ -128,7 +128,10 @@
         </el-col>
         <el-col :span="12" class="data-model">
           <div class="title">数据模型</div>
-          <my-tree :data="treeData" @nodeDragStart="nodeDragStart"/>
+          <my-tree
+            :draggable="true"
+            :data="treeData"
+            @onDragStart="nodeDragStart"/>
         </el-col>
       </el-col>
       <el-col :span="13" class="container-item">
@@ -167,6 +170,7 @@ export default {
   name: 'VddlSimpleChart',
   data () {
     return {
+      nodeList: [], // x轴的字段list
       custom: {
         title: {
           show: true,
@@ -257,6 +261,7 @@ export default {
           }
         ]
       },
+      xData: [], // x轴的数据
       category: [
         {
           id: '1',
@@ -334,8 +339,20 @@ export default {
     ...mapMutations({
       addChart: 'echarts/addChart'
     }),
+    nodeDrop () {
+      let isExist = this.nodeList.some(item => {
+        return item.name === this.currNode.name
+      })
+      if (!isExist) {
+        this.nodeList.push(this.currNode)
+        this.option.xAxis.data.push(this.currNode.name)
+        this.drawChart(this.option, this.currRefName)
+      }
+    },
+    nodeDragOver () {
+    },
     nodeDragStart (node) {
-      console.log('node', node)
+      this.currNode = node
     },
     handleChartItemClick (refName) {
       this.currRefName = refName
@@ -438,7 +455,7 @@ export default {
     },
     onDrop (refName) {
       console.log('onDrop', refName)
-      let dataType = this.currentItem.dataType
+      let dataType = this.currentItem.dataType || ''
       if (dataType === 'chart') {
         let type = this.currentItem.type
         if (type === TYPE.bar) {
@@ -482,9 +499,13 @@ export default {
      * @param option
      */
     drawChart (option, refName) {
-      // if (!this.myChart) {
-      //
-      // }
+      if (!refName) {
+        this.$message({
+          message: '请选择选择图表',
+          type: 'warning'
+        })
+        return
+      }
       this.myChart = echarts.init(this.$refs[refName])
       this.myChart.setOption(option)
     }

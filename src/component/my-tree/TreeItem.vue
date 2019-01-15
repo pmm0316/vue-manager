@@ -6,7 +6,7 @@
       <div>
         <i v-if="isFolder" :class="['iconfont', !open ? 'icon-sanjiaoright' : 'icon-xiajiantou1']"></i>
         <span
-          draggable="true"
+          :draggable="draggable"
           @drag.prevent="onDrag"
           @dragend.prevent="onDragend"
           @dragstart="onDragStart(model)">{{ model.name }}</span>
@@ -14,6 +14,8 @@
     </div>
     <ul v-show="open" v-if="isFolder">
       <tree-item
+        :draggable="draggable"
+        @onDragStart="onDragStart"
         class="item"
         v-for="(model, index) in model.children"
         :key="index"
@@ -27,7 +29,10 @@
 export default {
   name: 'TreeItem',
   props: {
-    model: Object
+    model: Object,
+    draggable: {
+      default: false
+    }
   },
   data: function () {
     return {
@@ -48,9 +53,8 @@ export default {
     onDrag () {},
     onDragend () {
     },
-    onDragStart (model) {
-      console.log('item', model)
-      this.$emit('onDragStart', model)
+    onDragStart (node) {
+      this.$emit('onDragStart', node)
     }
   }
 }

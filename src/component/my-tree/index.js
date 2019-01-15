@@ -8,3 +8,5 @@ import MyTree from './MyTree.vue'
 export default (Vue) => {
   Vue.component(MyTree.name, MyTree)
 }
+/*
+*/
