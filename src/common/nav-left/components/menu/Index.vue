@@ -34,7 +34,7 @@ export default {
   computed: {
     ...mapGetters(['menuIsCollapse'])
   },
-  mounted () {
+  created () {
     axios.get('/static/api/menu/menuList.json').then(res => {
       this.menuList = res.data.data.menuList
     })

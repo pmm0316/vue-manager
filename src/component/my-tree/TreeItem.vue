@@ -9,7 +9,7 @@
           :draggable="draggable"
           @drag.prevent="onDrag"
           @dragend.prevent="onDragend"
-          @dragstart="onDragStart(model)">{{ model.name }}</span>
+          @dragstart="onDragStart($event, model)">{{ model.name }}</span>
       </div>
     </div>
     <ul v-show="open" v-if="isFolder">
@@ -53,8 +53,9 @@ export default {
     onDrag () {},
     onDragend () {
     },
-    onDragStart (node) {
-      this.$emit('onDragStart', node)
+    onDragStart (e, node) {
+      console.log('item', e, node)
+      this.$emit('onDragStart', e, node)
     }
   }
 }

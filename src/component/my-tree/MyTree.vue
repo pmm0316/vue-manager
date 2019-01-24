@@ -21,8 +21,8 @@ export default {
     draggable: Boolean
   },
   methods: {
-    onDragStart (node) {
-      this.$emit('onDragStart', node)
+    onDragStart (e, node) {
+      this.$emit('onDragStart', e, node)
     }
   }
 }

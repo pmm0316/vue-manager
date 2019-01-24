@@ -1,5 +1,5 @@
 <template>
-    <div>Dashboard</div>
+    <div><test-j-s-x/></div>
 </template>
 
 <script>

@@ -36,16 +36,16 @@
                     <!--</div>-->
                   <!--</el-collapse-item>-->
                   <div class="x-data">
-                    <div class="title">x轴数据</div>
+                    <div class="title">x轴</div>
                     <div
                       class="content"
-                      @drop.prevent="nodeDrop"
+                      @drop.prevent="nodeDrop($event)"
                       @dragover.prevent="nodeDragOver">
                       <div class="field empty" v-show="nodeList.length === 0">请把字段拖入到此处</div>
                       <div class="field" v-for="node in nodeList" :key="node.name">{{node.name}}</div>
                     </div>
                   </div>
-                  <el-collapse-item title="y轴数据" name="3">
+                  <el-collapse-item title="y轴" name="3">
                     <div class="content-item">
                     <span
                       draggable="true"
@@ -128,10 +128,11 @@
         </el-col>
         <el-col :span="12" class="data-model">
           <div class="title">数据模型</div>
-          <my-tree
+          <!--<my-tree
             :draggable="true"
             :data="treeData"
-            @onDragStart="nodeDragStart"/>
+            @onDragStart="nodeDragStart"/>-->
+          <columns-tag :draggable="true" @onDragStart="nodeDragStart"/>
         </el-col>
       </el-col>
       <el-col :span="13" class="container-item">
@@ -164,6 +165,7 @@
 import echarts from 'echarts'
 import { TYPE } from '../../../common/constant/echarts'
 import ChartTypeItem from './components/ChartTypeItem'
+import ColumnsTag from './components/ColumnsTag'
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
@@ -314,6 +316,7 @@ export default {
           data: []
         },
         xAxis: {
+          name: '',
           data: []
         },
         yAxis: {},
@@ -333,26 +336,36 @@ export default {
     })
   },
   components: {
-    ChartTypeItem
+    ChartTypeItem,
+    ColumnsTag
   },
   methods: {
     ...mapMutations({
       addChart: 'echarts/addChart'
     }),
-    nodeDrop () {
-      let isExist = this.nodeList.some(item => {
+    nodeDrop (ev) {
+      // let node = ev.dataTransfer.getData('node')
+      /* let isExist = this.nodeList.some(item => {
         return item.name === this.currNode.name
       })
       if (!isExist) {
         this.nodeList.push(this.currNode)
         this.option.xAxis.data.push(this.currNode.name)
         this.drawChart(this.option, this.currRefName)
-      }
+      } */
+      this.nodeList.push(this.node)
+      this.node.data.forEach(item => {
+        this.option.xAxis.data.push(item.name)
+      })
+      this.option.xAxis.name = this.node.name
+      this.drawChart(this.option, this.currRefName)
     },
-    nodeDragOver () {
-    },
+    nodeDragOver () {},
     nodeDragStart (node) {
-      this.currNode = node
+      console.log('nodeDragStart', node)
+      // ev.dataTransfer.setData('node', node)
+      // this.currNode = node
+      this.node = node
     },
     handleChartItemClick (refName) {
       this.currRefName = refName
@@ -409,9 +422,7 @@ export default {
      * 点击tab页事件
      * @param tab event
      */
-    handleClick (tab, event) {
-      console.log(tab, event)
-    },
+    handleClick (tab) {},
     showChart (item) {
       this.drawChart(item)
     },
@@ -544,6 +555,12 @@ export default {
         }
         .data {
           .x-data {
+            .title {
+              font-weight: bold;
+              text-align: left;
+              margin-left: 10px;
+              color: #333;
+            }
             .field {
               background-color: cornflowerblue;
               width: 100%;
