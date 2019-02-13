@@ -114,6 +114,32 @@
             "order": "6-1"
           }
         ]
+      },
+      {
+        "title": "Vuex",
+        "key": "vuex",
+        "url": "/vuex",
+        "order": "7",
+        "children": [
+          {
+            "title": "module",
+            "url": "/vuex/module",
+            "order": "7-1"
+          }
+        ]
+      },
+      {
+        "title": "Test",
+        "key": "test",
+        "url": "/test",
+        "order": "8",
+        "children": [
+          {
+            "title": "lifeCycle",
+            "url": "/test/life",
+            "order": "8-1"
+          }
+        ]
       }
     ]
   }

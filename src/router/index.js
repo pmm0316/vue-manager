@@ -11,6 +11,7 @@ import ChartCustom from '../pages/echarts/custom/Custom'
 import GoJSSample from '../pages/gojs/Sample'
 import HTMLInteraction from '../pages/gojs/HTMLInteraction'
 import Schedule from '../pages/calendar/schedule'
+import Module from '../pages/vuex/Module'
 
 Vue.use(Router)
 
@@ -71,6 +72,11 @@ export default new Router({
       path: '/calendar/schedule',
       name: 'Schedule',
       component: Schedule
+    },
+    {
+      path: '/vuex/module',
+      name: 'Module',
+      component: Module
     }
   ]
 })

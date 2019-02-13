@@ -1,5 +1,7 @@
 <template>
-    <div><test-j-s-x/></div>
+    <div>
+      <my-title level="5">123</my-title>
+    </div>
 </template>
 
 <script>
@@ -7,7 +9,3 @@ export default {
   name: 'Index'
 }
 </script>
-
-<style scoped lang='scss'>
-
-</style>
