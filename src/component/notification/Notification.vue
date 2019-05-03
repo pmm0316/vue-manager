@@ -1,8 +1,8 @@
 <template>
-  <transition name="fade">
-    <div class="notification">
+  <transition name="fade" @after-leave="afterLeave" @after-enter="afterEnter">
+    <div class="notification" :style="style" v-show="visible">
       <span class="content">{{content}}</span>
-      <span class="btn" @click.prevent="handleClose">{{btn}}</span>
+      <span class="btn" @click.prevent="handleClose">{{closeText}}</span>
     </div>
   </transition>
 </template>
@@ -15,15 +15,30 @@ export default {
       type: String,
       required: true
     },
-    btn: {
+    closeText: {
       type: String,
       default: '关闭'
     }
   },
-  methods: {
-    handleClose () {
-      this.$emit('close')
+  computed: {
+    style () {
+      return {}
     }
+  },
+  data () {
+    return {
+      visible: true
+    }
+  },
+  methods: {
+    handleClose (e) {
+      e.preventDefault()
+      this.$emit('close')
+    },
+    afterLeave () {
+      this.$emit('closed')
+    },
+    afterEnter () {}
   }
 }
 </script>

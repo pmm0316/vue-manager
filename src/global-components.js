@@ -4,7 +4,6 @@
  * email: 847679250@qq.com
  */
 import Vue from 'vue'
-import Notification from './component/notification/Notification'
 import MyTree from './component/my-tree/MyTree'
 import MyTitle from './component/my-title/MyTitle'
 
@@ -12,6 +11,5 @@ Vue.component('Notification', Notification)
 Vue.component('MyTree', MyTree)
 Vue.component('MyTitle', MyTitle)
 
-Vue.use(Notification)
 Vue.use(MyTree)
 Vue.use(MyTitle)

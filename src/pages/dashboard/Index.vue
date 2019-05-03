@@ -1,11 +1,21 @@
 <template>
     <div>
-      <my-title level="5">123</my-title>
+      <Button @click="notify">notify</Button>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'Index'
+  name: 'Index',
+  methods: {
+    notify () {
+      this.$myNotify({
+        content: 'test test',
+        closeText: 'close'
+      })
+    }
+  },
+  mounted () {
+  }
 }
 </script>

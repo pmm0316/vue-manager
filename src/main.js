@@ -10,6 +10,7 @@ import './common/element'
 import 'jquery'
 import 'jquery-ui'
 import './global-components'
+import notification from './component/notification'
 
 Vue.config.productionTip = false
 /**
@@ -17,6 +18,8 @@ Vue.config.productionTip = false
  */
 Vue.use(aweDnd)
 Vue.use(vddl)
+Vue.use(notification)
+// Vue.use(notification)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
