@@ -63,7 +63,6 @@ const autoClose = (instance) => {
  * @param instance
  */
 const removeInstance = (instance) => {
-  debugger
   if (!instance) return
   let index = instances.findIndex(item => item.id === instance.id)
   let len = instances.length

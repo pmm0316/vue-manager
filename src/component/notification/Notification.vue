@@ -1,6 +1,6 @@
 <template>
   <transition name="fade" @after-leave="afterLeave" @after-enter="afterEnter">
-    <div class="notification" :style="style" v-show="visible">
+    <div class="notification" :style="style" v-show="visible" @mouseover="clearTimer" @mouseout="setNotifyTimer">
       <span class="content">{{content}}</span>
       <span class="btn" @click.prevent="handleClose">{{closeText}}</span>
     </div>
@@ -38,7 +38,9 @@ export default {
     afterLeave () {
       this.$emit('closed')
     },
-    afterEnter () {}
+    afterEnter () {},
+    setNotifyTimer () {},
+    clearTimer () {}
   }
 }
 </script>
