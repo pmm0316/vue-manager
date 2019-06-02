@@ -8,8 +8,6 @@ import Dnd from '../pages/drag/Dnd'
 import Vddl from '../pages/drag/Vddl'
 import ChartBasic from '../pages/echarts/Basic'
 import ChartCustom from '../pages/echarts/custom/Custom'
-import GoJSSample from '../pages/gojs/Sample'
-import HTMLInteraction from '../pages/gojs/HTMLInteraction'
 import Schedule from '../pages/calendar/schedule'
 import Module from '../pages/vuex/Module'
 
@@ -57,16 +55,6 @@ export default new Router({
       path: '/eCharts/custom',
       name: 'ChartCustom',
       component: ChartCustom
-    },
-    {
-      path: '/gojs/sample',
-      name: 'GoJSSample',
-      component: GoJSSample
-    },
-    {
-      path: '/gojs/htmlInteraction',
-      name: 'HTMLInteraction',
-      component: HTMLInteraction
     },
     {
       path: '/calendar/schedule',

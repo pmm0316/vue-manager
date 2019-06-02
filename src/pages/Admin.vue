@@ -8,7 +8,7 @@
           <main-header/>
         </el-header>
         <el-main>
-          <tabs/>
+          <router-view/>
         </el-main>
       </el-container>
     </el-container>
@@ -17,15 +17,13 @@
 <script>
 import NavLeft from '../common/nav-left'
 import MainHeader from '../common/header'
-import Tabs from '../common/tabs'
 import {mapGetters} from 'vuex'
 
 export default {
   name: 'Admin',
   components: {
     NavLeft,
-    MainHeader,
-    Tabs
+    MainHeader
   },
   computed: {
     ...mapGetters(['asideWidth'])

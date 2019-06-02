@@ -11,10 +11,10 @@
         </el-select>
         <!--<div class="operation-item data-source">-->
           <!--<el-button-->
-            <!--@click="handleTagClick(index)"-->
+            <!--@click="handleTagClick(index.js)"-->
             <!--:class="{'selected': item.selected}"-->
             <!--:key="item.title"-->
-            <!--v-for="(item, index) in dataSource">-->
+            <!--v-for="(item, index.js) in dataSource">-->
             <!--{{item.title}}-->
           <!--</el-button>-->
         <!--</div>-->
@@ -81,8 +81,8 @@ export default {
     Chart1
   },
   methods: {
-    // handleTagClick (index) {
-    //   this.dataSource[index].selected = !this.dataSource[index].selected
+    // handleTagClick (index.js) {
+    //   this.dataSource[index.js].selected = !this.dataSource[index.js].selected
     // }
   }
 }

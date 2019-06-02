@@ -31,7 +31,6 @@ const notify = (options) => {
   instance.visible = true
   let verticalOffset = 0
   instances.forEach(item => {
-    console.log()
     verticalOffset += item.$el.offsetHeight + 16
   })
   verticalOffset += 16

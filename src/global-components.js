@@ -5,11 +5,10 @@
  */
 import Vue from 'vue'
 import MyTree from './component/my-tree/MyTree'
-import MyTitle from './component/my-title/MyTitle'
+import MyNotify from './component/my-notify'
+import NiuFuNotify from './component/nf-notify'
 
-Vue.component('Notification', Notification)
 Vue.component('MyTree', MyTree)
-Vue.component('MyTitle', MyTitle)
-
-Vue.use(MyTree)
-Vue.use(MyTitle)
+Vue.component(MyNotify.name, MyNotify)
+Vue.use(MyNotify)
+Vue.use(NiuFuNotify)

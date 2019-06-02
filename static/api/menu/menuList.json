@@ -81,28 +81,7 @@
             "order": "4-2"
           }
         ]
-      },
-      {
-        "title": "GoJS",
-        "key": "goJS",
-        "url": "/goJS",
-        "order": "5",
-        "children": [
-          {
-            "title": "Sample",
-            "key": "/gojs/sample",
-            "url": "/gojs/sample",
-            "order": "5-1"
-          },
-          {
-            "title": "htmlInteraction",
-            "key": "/gojs/htmlInteraction",
-            "url": "/gojs/htmlInteraction",
-            "order": "5-2"
-          }
-        ]
-      },
-      {
+      }, {
         "title": "日历",
         "key": "calendar",
         "url": "/calendar",

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <Button @click="notify">notify</Button>
+        <el-button @click="notify" type="primary">notify</el-button>
     </div>
 </template>
 
@@ -10,12 +10,10 @@ export default {
   methods: {
     notify () {
       this.$myNotify({
-        content: 'test test',
-        closeText: 'close'
+        content: 'test2323 test',
+        autoClose: 4000
       })
     }
-  },
-  mounted () {
   }
 }
 </script>

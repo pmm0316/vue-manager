@@ -20,7 +20,6 @@ export default {
     return {
       verticalOffset: 0,
       closeTime: 3000,
-      visible: false,
       selfHeight: 0
     }
   },
