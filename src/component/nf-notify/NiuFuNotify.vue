@@ -2,7 +2,7 @@
   <transition name="fade" @after-enter="afterEnter" @after-leave="afterLeave" mode="out-in">
     <div class="notification" :style="style" v-if="visible" @mouseover="clearTimer" @mouseout="createTimer">
       <div class="top-wrapper">
-        <i :class="typeClass"></i>
+        <i :class="typeClass" v-show="type === ''"></i>
         <i class="title">{{title}}</i>
         <i class="el-icon-close" @click="handleClose"></i>
       </div>
@@ -21,7 +21,7 @@ export default {
   },
   props: {
     type: {
-      default: 'success',
+      default: '',
       type: String
     },
     message: {

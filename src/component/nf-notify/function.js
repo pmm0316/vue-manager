@@ -12,8 +12,11 @@ const instances = []
 let id = 0
 
 const notify = (options) => {
+  let {onClose, ...rest} = options
   let instance = new NotifyConstructor({
-    propsData: options
+    propsData: {
+      ...rest
+    }
   })
   instance.id = `notify_${id++}`
   instance.$mount()
@@ -24,13 +27,17 @@ const notify = (options) => {
   offsetBottom += 16
   instance.offsetBottom = offsetBottom || 16
   instances.push(instance)
-  console.log('bottom', instance.offsetBottom)
   document.body.appendChild(instance.$el)
   instance.visible = true
-  removeInstance(instance)
+  removeInstance(instance, onClose)
 }
 
-const removeInstance = (instance) => {
+/**
+ * 移除组件
+ * @param instance
+ * @param onClose 关闭方法
+ */
+const removeInstance = (instance, onClose) => {
   if (!instance) {
     return
   }
@@ -48,6 +55,7 @@ const removeInstance = (instance) => {
   })
   instance.$on('close', () => {
     instance.visible = false
+    onClose()
   })
 }
 

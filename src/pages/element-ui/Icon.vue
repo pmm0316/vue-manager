@@ -12,6 +12,7 @@
         </div>
       </el-card>
       <el-button @click="notify">提示</el-button>
+      <el-button @click="handleELNotify">el-提示</el-button>
     </div>
 </template>
 
@@ -23,7 +24,18 @@ export default {
       this.$niuFuNotify({
         message: 'test test test',
         type: 'info',
-        autoClose: 2000
+        autoClose: 0,
+        onClose: () => {
+          console.log('自定义的关闭')
+        }
+      })
+    },
+    handleELNotify () {
+      this.$notify({
+        title: '消息',
+        onClose () {
+          console.log('aaaagag')
+        }
       })
     }
   }
