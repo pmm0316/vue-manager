@@ -13,12 +13,23 @@
       </el-card>
       <el-button @click="notify">提示</el-button>
       <el-button @click="handleELNotify">el-提示</el-button>
+      <nf-input v-model="text" :disabled="true"></nf-input>
+      <nf-input v-model="text2" clearable></nf-input>
+      <nf-input v-model="text3" show-password></nf-input>
+      <el-button type="danger" @click="handleClick">click</el-button>
     </div>
 </template>
 
 <script>
 export default {
   name: 'Icon',
+  data () {
+    return {
+      text: '',
+      text2: '',
+      text3: ''
+    }
+  },
   methods: {
     notify () {
       this.$niuFuNotify({
@@ -37,6 +48,9 @@ export default {
           console.log('aaaagag')
         }
       })
+    },
+    handleClick () {
+      this.text = 'hello'
     }
   }
 }

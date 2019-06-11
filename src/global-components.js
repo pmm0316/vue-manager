@@ -7,8 +7,10 @@ import Vue from 'vue'
 import MyTree from './component/my-tree/MyTree'
 import MyNotify from './component/my-notify'
 import NiuFuNotify from './component/nf-notify'
+import NiuFuInput from './component/nf-input'
 
 Vue.component('MyTree', MyTree)
 Vue.component(MyNotify.name, MyNotify)
 Vue.use(MyNotify)
+Vue.use(NiuFuInput)
 Vue.use(NiuFuNotify)

@@ -25,6 +25,7 @@ const typeList = [
 ]
 export default {
   extends: NiuFuNotify,
+  name: 'nf-notify',
   data () {
     return {
       offsetBottom: 0,
